@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cuy76w17khqiw"]
+
+[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/Sprite-0001.png" id="1_xfv1e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xfv1e"]
+radius = 6.0
+
+[node name="PropBushType1_" type="Node2D" unique_id=510174280]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734131500]
+position = Vector2(0, -7)
+texture = ExtResource("1_xfv1e")
+region_enabled = true
+region_rect = Rect2(7, 49, 24, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1738932887]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=574343122]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_xfv1e")

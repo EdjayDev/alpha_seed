@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dlyohie85aw15"]
+
+[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/Sprite-0001.png" id="1_22n3e"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ii6u1"]
+texture = ExtResource("1_22n3e")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_72vlq"]
+sources/0 = SubResource("TileSetAtlasSource_ii6u1")
+
+[node name="game_tilelayer" type="TileMapLayer" unique_id=202199649]
+tile_set = SubResource("TileSet_72vlq")
