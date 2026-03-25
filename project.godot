@@ -13,7 +13,12 @@ config_version=5
 config/name="Glixch"
 run/main_scene="uid://om2hijqmi35s"
 config/features=PackedStringArray("4.7", "Forward Plus")
+boot_splash/image="uid://ctudqwofph0qc"
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://bwv5ymm30r8kn"
 
 [display]
 
@@ -46,6 +51,12 @@ Down={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="NPC"
+2d_physics/layer_5="Wall"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -54,3 +65,4 @@ Down={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://2cur1f7o66vv"]
+
+[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap.png" id="1_wxmwf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wxmwf"]
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0nny"]
+radius = 2.0
+
+[node name="PropTreeType1_" type="Node2D" unique_id=510174280]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734131500]
+position = Vector2(0, -30)
+texture = ExtResource("1_wxmwf")
+region_enabled = true
+region_rect = Rect2(112, 8, 79, 103)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1738932887]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=574343122]
+position = Vector2(2, -7)
+shape = SubResource("CapsuleShape2D_wxmwf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1480348059]
+position = Vector2(18, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_q0nny")
