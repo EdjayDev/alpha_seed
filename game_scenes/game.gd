@@ -8,10 +8,13 @@ var time : Timer
 var input_locked : bool = false
 var in_cutscene : bool = false
 
+@onready var virtual_joystick: VirtualJoystick = $animation_nodes/VirtualJoystick
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	virtual_joystick.visible = is_mobile()
 	await intro_cutscene()
 	set_timer()
 
@@ -29,5 +32,7 @@ func intro_cutscene()->void:
 	in_cutscene = false
 
 func set_timer()->void:
-	
 	pass
+
+func is_mobile() -> bool:
+	return OS.get_name() in ["Android", "iOS"]

@@ -113,6 +113,10 @@ position = Vector2(60, -38)
 position = Vector2(-46, -9)
 scale = Vector2(1.5, 1.5)
 
+[node name="PropBushType1_3" parent="y_sort/props" unique_id=879158601 instance=ExtResource("3_3jbpx")]
+position = Vector2(-130, -104)
+scale = Vector2(1.5, 1.5)
+
 [node name="animation_nodes" type="CanvasLayer" parent="." unique_id=1541567642]
 
 [node name="Control" type="Control" parent="animation_nodes" unique_id=1701311293]
@@ -160,15 +164,17 @@ color = Color(0.04902649, 0.08203125, 0.054957032, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 27.0
-offset_top = -126.0
-offset_right = 155.0
-offset_bottom = -38.0
+offset_left = 94.0
+offset_top = -131.0
+offset_right = 146.0
+offset_bottom = -79.0
 grow_vertical = 0
 theme_override_colors/ring_normal_color = Color(0.31640625, 0.0074157715, 0.0074157715, 1)
 theme_override_colors/tip_normal_color = Color(0.37890625, 0.054763794, 0.054763794, 1)
 theme_override_colors/ring_pressed_color = Color(0.39453125, 0.18955994, 0.18955994, 1)
 theme_override_colors/tip_pressed_color = Color(0.22265625, 0.050445557, 0.050445557, 1)
+joystick_size = 133.0
+tip_size = 75.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1034978616]
 environment = SubResource("Environment_ahkyb")
