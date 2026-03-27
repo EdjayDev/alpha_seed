@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2cur1f7o66vv"]
 
-[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap.png" id="1_wxmwf"]
+[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap/tilemap.png" id="1_wxmwf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wxmwf"]
 height = 28.0

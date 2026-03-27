@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bswb3revec3le"]
 
-[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap.png" id="1_30rsh"]
+[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap/tilemap.png" id="1_30rsh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30rsh"]
 radius = 4.0
@@ -9,10 +9,10 @@ height = 20.0
 [node name="PropBushType2_" type="Node2D" unique_id=510174280]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734131500]
-position = Vector2(0, -1)
+position = Vector2(0, -2.4999998)
 texture = ExtResource("1_30rsh")
 region_enabled = true
-region_rect = Rect2(39, 54, 23, 15)
+region_rect = Rect2(54, 54, 22, 15)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1738932887]
 collision_layer = 16
