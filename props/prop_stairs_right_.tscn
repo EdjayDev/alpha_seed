@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bi07fqn51pol"]
+
+[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap/tilemap.png" id="1_k8v8s"]
+
+[node name="Prop_StairsRight_" type="Node2D" unique_id=510174280]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734131500]
+position = Vector2(0, 21.999998)
+texture = ExtResource("1_k8v8s")
+region_enabled = true
+region_rect = Rect2(272, 210, 33, 44)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1738932887]
+collision_layer = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=664469116]
+polygon = PackedVector2Array(-13, 39, 16, 20, 16, 40, -13, 40)

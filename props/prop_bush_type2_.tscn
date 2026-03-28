@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30rsh"]
 radius = 4.0
-height = 20.0
+height = 18.0
 
 [node name="PropBushType2_" type="Node2D" unique_id=510174280]
 
@@ -12,12 +12,12 @@ height = 20.0
 position = Vector2(0, -2.4999998)
 texture = ExtResource("1_30rsh")
 region_enabled = true
-region_rect = Rect2(54, 54, 22, 15)
+region_rect = Rect2(87, 86, 22, 15)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1738932887]
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=574343122]
-position = Vector2(-3, 2)
+position = Vector2(-2, 1)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_30rsh")

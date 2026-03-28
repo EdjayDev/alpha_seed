@@ -10,8 +10,6 @@ var in_cutscene : bool = false
 
 @onready var virtual_joystick: VirtualJoystick = $animation_nodes/VirtualJoystick
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	virtual_joystick.visible = is_mobile()

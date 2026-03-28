@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://h4ncptco8ag3"]
+
+[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap/tilemap.png" id="1_lcuyg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcuyg"]
+size = Vector2(96, 67)
+
+[node name="PropHutType1_" type="Node2D" unique_id=510174280]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734131500]
+position = Vector2(0, -53)
+texture = ExtResource("1_lcuyg")
+region_enabled = true
+region_rect = Rect2(150, 144, 102, 106)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1738932887]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1156538968]
+position = Vector2(0, -33.5)
+shape = SubResource("RectangleShape2D_lcuyg")

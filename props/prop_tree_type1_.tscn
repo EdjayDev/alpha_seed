@@ -2,11 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap/tilemap.png" id="1_wxmwf"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wxmwf"]
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxmwf"]
+size = Vector2(21, 13)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0nny"]
-radius = 2.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0nny"]
+size = Vector2(19.714443, 4.9862165)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h5xoa"]
+size = Vector2(8.873472, 6.4925885)
 
 [node name="PropTreeType1_" type="Node2D" unique_id=510174280]
 
@@ -14,16 +17,29 @@ radius = 2.0
 position = Vector2(0, -30)
 texture = ExtResource("1_wxmwf")
 region_enabled = true
-region_rect = Rect2(112, 8, 79, 103)
+region_rect = Rect2(146, 40, 76, 97)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1738932887]
 collision_layer = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=574343122]
-position = Vector2(2, -7)
-shape = SubResource("CapsuleShape2D_wxmwf")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=648774559]
+position = Vector2(2.5, -1.5)
+shape = SubResource("RectangleShape2D_wxmwf")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1480348059]
-position = Vector2(18, 3)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_q0nny")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=527042603]
+position = Vector2(-11, 6)
+rotation = -0.5839114
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_q0nny")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1212788582]
+position = Vector2(4.665707, 10.431923)
+rotation = -1.5546751
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_h5xoa")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=788837978]
+position = Vector2(15.211344, 2.722875)
+rotation = 0.8288907
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_q0nny")

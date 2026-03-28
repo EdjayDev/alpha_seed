@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cy87rbdehca04" path="res://player/player_sprite.png" id="2_rkbax"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
-radius = 5.0
-height = 10.0
+radius = 8.0
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_g1dw6"]
 length = 0.001
@@ -156,13 +156,13 @@ collision_mask = 16
 script = ExtResource("1_rkbax")
 
 [node name="player_sprite" type="Sprite2D" parent="." unique_id=300720665]
-position = Vector2(0, -12)
+position = Vector2(0, -8)
 texture = ExtResource("2_rkbax")
 hframes = 4
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2080722228]
-position = Vector2(0, -9)
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="player_animation" type="AnimationPlayer" parent="." unique_id=1273623497]

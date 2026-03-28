@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dooykjn2l1tct"]
+
+[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap/tilemap.png" id="1_1yunl"]
+
+[node name="Prop_StairsLeft_" type="Node2D" unique_id=510174280]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734131500]
+position = Vector2(0, -18.000002)
+texture = ExtResource("1_1yunl")
+region_enabled = true
+region_rect = Rect2(319, 210, 33, 44)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1738932887]
+collision_layer = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1322978790]
+position = Vector2(-3, -40)
+polygon = PackedVector2Array(-13, 40, -13, 20, 16, 39, 16, 40)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1331816250]
+polygon = PackedVector2Array(-16, -40, 16, -18, 16, -19, -16, -41)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1077055303]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=363121195]
+position = Vector2(0, -20)
+polygon = PackedVector2Array(-16, -19, 16, 3, 16, 19, -16, -1)
