@@ -295,9 +295,7 @@ volume_db = -5.0
 autoplay = true
 
 [node name="WizardHut_DoorInside" type="Marker2D" parent="." unique_id=77339228]
-position = Vector2(345, -1403)
-
-[node name="Area2D" type="Area2D" parent="WizardHut_DoorInside" unique_id=2047766523]
+position = Vector2(345, -1401)
 
 [node name="WizardHut_DoorOutside" type="Marker2D" parent="." unique_id=525759189]
 position = Vector2(-1149, -1392)
