@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://df7w6u5h6q7u"]
+
+[ext_resource type="Script" uid="uid://clntit7u56xar" path="res://enemy/enemy_base.gd" id="1_clntit"]
+[ext_resource type="Texture2D" uid="uid://cdfhp58knmpx7" path="res://icon.svg" id="2_cdfhp"]
+[ext_resource type="Script" uid="uid://ddamy57jmq1v0" path="res://systems/state_machine.gd" id="3_ddamy"]
+[ext_resource type="Script" uid="uid://5pf7jbe4jicq" path="res://enemy/states/enemy_idle_state.gd" id="4_5pf7j"]
+[ext_resource type="Script" uid="uid://b30gggx3d0s3i" path="res://enemy/states/enemy_chase_state.gd" id="5_b30gg"]
+[ext_resource type="Script" uid="uid://p3a5k71ncijs" path="res://enemy/states/enemy_attack_state.gd" id="6_p3a5k"]
+[ext_resource type="Script" path="res://systems/health_component.gd" id="7_health"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_1"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.125, 0.125), Vector2(0.14, 0.11), Vector2(0.125, 0.125)]
+}
+
+[sub_resource type="Animation" id="Animation_2"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1"]
+_data = {
+"attack": SubResource("Animation_3"),
+"idle": SubResource("Animation_1"),
+"walk": SubResource("Animation_2")
+}
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_clntit")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("7_health")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_cdfhp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("AnimationLibrary_1")
+autoplay = &"idle"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_ddamy")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_5pf7j")
+enemy = NodePath("../..")
+
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_b30gg")
+enemy = NodePath("../..")
+
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_p3a5k")
+enemy = NodePath("../..")
