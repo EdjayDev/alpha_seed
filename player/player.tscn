@@ -66,23 +66,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_yw30f"]
 resource_name = "idle_down"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player_sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_rgyib"]
-resource_name = "idle_side"
-length = 1.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -91,7 +74,23 @@ tracks/0/path = NodePath("player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.03333336, 1.0666667),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_rgyib"]
+resource_name = "idle_side"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333336, 0.56666666),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [6, 7]
@@ -108,10 +107,10 @@ tracks/0/path = NodePath("player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.56666666),
+"times": PackedFloat32Array(0, 0.43333334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [4, 5]
+"values": [12, 13]
 }
 
 [sub_resource type="Animation" id="Animation_qjkh3"]
@@ -148,7 +147,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hg6s5"]
 resource_name = "walk_side"
-length = 0.6666667
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -157,7 +156,7 @@ tracks/0/path = NodePath("player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.36666667, 0.53333336),
+"times": PackedFloat32Array(0, 0.2, 0.43333334, 0.6333333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [8, 9, 10, 11]
@@ -165,7 +164,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_rkbax"]
 resource_name = "walk_up"
-length = 0.5
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -174,10 +173,10 @@ tracks/0/path = NodePath("player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.43333334, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [6, 7]
+"values": [14, 15, 16, 17]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qjkh3"]
@@ -207,7 +206,7 @@ shape = SubResource("CapsuleShape2D_rkbax")
 position = Vector2(0, -16)
 texture = ExtResource("2_rkbax")
 hframes = 4
-vframes = 4
+vframes = 5
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1188189541]
 position = Vector2(0, -8)

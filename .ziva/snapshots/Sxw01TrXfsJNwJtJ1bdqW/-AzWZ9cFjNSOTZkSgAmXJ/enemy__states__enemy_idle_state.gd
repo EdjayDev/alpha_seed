@@ -11,11 +11,7 @@ func update(_delta: float) -> void:
 		return
 
 	if enemy.animation_player:
-		if enemy.player:
-			var direction = (enemy.player.global_position - enemy.global_position).normalized()
-			enemy.play_directional_animation("idle", direction)
-		else:
-			enemy.animation_player.play("idle_down")
+		enemy.animation_player.play("idle")
 	
 	if not enemy.player:
 		return

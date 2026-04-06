@@ -27,4 +27,10 @@ func physics_update(_delta: float) -> void:
 	enemy.velocity = target_velocity # Direct snap is often better for top-down AI to avoid dragging
 	
 	if enemy.animation_player:
-		enemy.play_directional_animation("walk", direction)
+		enemy.animation_player.play("walk")
+	
+	# Flip sprite
+	if direction.x > 0:
+		enemy.sprite.flip_h = true
+	else:
+		enemy.sprite.flip_h = false

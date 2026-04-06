@@ -51,20 +51,6 @@ func _on_health_changed(_old_health: float, new_health: float) -> void:
 		var v_tween = create_tween()
 		v_tween.tween_property(self, "velocity", Vector2.ZERO, 0.2)
 
-func play_directional_animation(anim_base: String, dir: Vector2) -> void:
-	var suffix = "_down"
-	if abs(dir.x) > abs(dir.y):
-		suffix = "_side"
-		if sprite:
-			sprite.flip_h = (dir.x > 0)
-	elif dir.y < 0:
-		suffix = "_up"
-	else:
-		suffix = "_down"
-	
-	if animation_player:
-		animation_player.play(anim_base + suffix)
-
 func _on_died() -> void:
 	# Death animation
 	if animation_player:

@@ -1,7 +1,7 @@
 extends Node2D
 class_name Main_Game
 
-@onready var label: Label = $animation_nodes/TitleLabel
+@onready var label: Label = $animation_nodes/Control/Label
 @onready var game_anim_player: AnimationPlayer = $animation_nodes/game_anim_player
 @onready var player: Player = $y_sort/Player
 @onready var dialogue_ui: Control = $animation_nodes/DialogueUI
@@ -31,11 +31,11 @@ func intro_cutscene()->void:
 	player.is_in_cutscene = true
 	
 	# Fade in Title
-	label.text = "THE ETERNAL DARK"
-	label.modulate = Color.WHITE
+	$animation_nodes/Control/Label.text = "THE ETERNAL DARK"
+	$animation_nodes/Control/Label.modulate = Color.WHITE
 	var title_tween = create_tween()
 	title_tween.tween_interval(1.0)
-	title_tween.tween_property(label, "modulate", Color.TRANSPARENT, 2.0)
+	title_tween.tween_property($animation_nodes/Control/Label, "modulate", Color.TRANSPARENT, 2.0)
 	
 	# Initial Setup: Group of people around the light (CaveExit light)
 
