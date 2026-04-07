@@ -54,7 +54,7 @@ func _on_health_changed(_old: float, new_health: float) -> void:
 	if health:
 		if health.health < 30:
 			# Panic flicker
-			flicker_timer += 5.0
+			flicker_timer += 4.5
 
 
 func _on_died() -> void:
