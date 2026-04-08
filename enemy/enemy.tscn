@@ -134,8 +134,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_idle_up"]
 resource_name = "idle_up"
-length = 0.8
-loop_mode = 1
+length = 0.6
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -143,7 +143,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [12, 13]
@@ -260,11 +260,11 @@ script = ExtResource("1_clntit")
 script = ExtResource("7_health")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=617755285]
-modulate = Color(0.67578125, 0.67578125, 0.67578125, 1)
+modulate = Color(0.9375, 0.90799826, 0.8203125, 1)
 position = Vector2(0, -16)
 texture = ExtResource("3_y5vj3")
 hframes = 4
-vframes = 4
+vframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1831117346]
 position = Vector2(0, -8)

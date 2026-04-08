@@ -31,7 +31,7 @@ func intro_cutscene()->void:
 	player.is_in_cutscene = true
 	
 	# Fade in Title
-	label.text = "THE ETERNAL DARK"
+	label.text = "The True Light"
 	label.modulate = Color.WHITE
 	var title_tween = create_tween()
 	title_tween.tween_interval(1.0)
@@ -49,7 +49,7 @@ func intro_cutscene()->void:
 		npc.is_in_cutscene = true
 		npc.sprite.modulate = Color.WHITE # Not cursed yet
 		npcs.append(npc)
-	
+	 
 	# Move camera to the group
 	var cam = player.get_node("Camera2D")
 	cam.reparent($y_sort) # Temporarily move camera to y_sort to animate freely
