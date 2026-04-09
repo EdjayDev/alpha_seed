@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://f57687tomw4x"]
+
+[ext_resource type="Script" uid="uid://dnhfnwq4toyrf" path="res://props/candle.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cwdmnlealb4wm" path="res://props/candles.png" id="2_00cvw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r2sf"]
+atlas = ExtResource("2_00cvw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul6am"]
+atlas = ExtResource("2_00cvw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rapb"]
+atlas = ExtResource("2_00cvw")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_candle"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2r2sf")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_ul6am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rapb")
+}],
+"loop": true,
+"name": &"flicker",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_1rapb"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ax1up"]
+gradient = SubResource("Gradient_1rapb")
+width = 128
+height = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8914027, 0.24434389)
+metadata/_snap_enabled = true
+
+[node name="Candle" type="Node2D" unique_id=1425092073]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1591019138]
+texture_filter = 1
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_candle")
+animation = &"flicker"
+autoplay = "flicker"
+frame_progress = 0.58343405
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1301949457]
+position = Vector2(0, -12)
+color = Color(1, 0.760784, 0.380392, 1)
+energy = 0.75
+texture = SubResource("GradientTexture2D_ax1up")

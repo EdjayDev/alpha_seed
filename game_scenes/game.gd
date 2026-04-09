@@ -30,7 +30,7 @@ func intro_cutscene()->void:
 	input_locked = true
 	player.is_in_cutscene = true
 	
-	# Fade in Title
+	# Fade in Title 
 	label.text = "The True Light"
 	label.modulate = Color.WHITE
 	var title_tween = create_tween()
@@ -49,7 +49,7 @@ func intro_cutscene()->void:
 		npc.is_in_cutscene = true
 		npc.sprite.modulate = Color.WHITE # Not cursed yet
 		npcs.append(npc)
-	 
+	
 	# Move camera to the group
 	var cam = player.get_node("Camera2D")
 	cam.reparent($y_sort) # Temporarily move camera to y_sort to animate freely
@@ -70,11 +70,6 @@ func intro_cutscene()->void:
 	
 	await show_dialogue("But the cave gave nothing back. The roots withered. The water turned bitter.")
 	await show_dialogue("Desperate, they begged for a miracle. For bread. For life.")
-	
-	# Screen shake or flicker
-	var flicker_tween = create_tween().set_loops(20)
-	flicker_tween.tween_property($CanvasModulate, "color", Color(0.1, 0.0, 0.1), 0.05)
-	flicker_tween.tween_property($CanvasModulate, "color", Color.BLACK, 0.05)
 	
 	# Shake the camera during curse
 	player.apply_shake(5.0, 1.0)

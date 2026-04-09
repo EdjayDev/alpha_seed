@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bi07fqn51pol" path="res://props/prop_stairs_right_.tscn" id="12_r8i8k"]
 [ext_resource type="PackedScene" uid="uid://dooykjn2l1tct" path="res://props/prop_stairs_left_.tscn" id="13_drhwc"]
 [ext_resource type="PackedScene" uid="uid://df7w6u5h6q7u" path="res://enemy/enemy.tscn" id="14_eu5pw"]
+[ext_resource type="Texture2D" uid="uid://wsdx7ccifio1" path="res://assets/GameBanner.png" id="14_r8i8k"]
 [ext_resource type="PackedScene" uid="uid://c6yv8q5h6q7u1" path="res://systems/cave_exit.tscn" id="16_exit"]
 [ext_resource type="PackedScene" uid="uid://f57687tomw4x" path="res://props/candle.tscn" id="17_candle"]
 [ext_resource type="PackedScene" uid="uid://06jo8ca320hh" path="res://ui/hud.tscn" id="HUD_res"]
@@ -341,3 +342,9 @@ position = Vector2(-1149, -1392)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=321889389]
 color = Color(0.2578125, 0.2578125, 0.2578125, 1)
+
+[node name="GameBanner" type="Sprite2D" parent="." unique_id=37739590]
+texture_filter = 1
+position = Vector2(641.9999, 359.99997)
+scale = Vector2(10.000001, 10.000001)
+texture = ExtResource("14_r8i8k")

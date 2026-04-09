@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dooykjn2l1tct" path="res://props/prop_stairs_left_.tscn" id="13_drhwc"]
 [ext_resource type="PackedScene" uid="uid://df7w6u5h6q7u" path="res://enemy/enemy.tscn" id="14_eu5pw"]
 [ext_resource type="PackedScene" uid="uid://c6yv8q5h6q7u1" path="res://systems/cave_exit.tscn" id="16_exit"]
-[ext_resource type="PackedScene" uid="uid://f57687tomw4x" path="res://props/candle.tscn" id="17_candle"]
 [ext_resource type="PackedScene" uid="uid://06jo8ca320hh" path="res://ui/hud.tscn" id="HUD_res"]
 
 [sub_resource type="Animation" id="Animation_i1vrp"]
@@ -78,11 +77,12 @@ _data = {
 [sub_resource type="Environment" id="Environment_ahkyb"]
 background_mode = 3
 tonemap_mode = 3
+tonemap_exposure = 0.52
 tonemap_white = 6.0
 glow_enabled = true
 glow_normalized = true
-glow_intensity = 1.2
-glow_bloom = 0.33
+glow_intensity = 0.33
+glow_bloom = 0.5
 
 [node name="Game" type="Node2D" unique_id=62728405]
 script = ExtResource("1_i1vrp")
@@ -115,7 +115,7 @@ position = Vector2(-1242, -1497)
 position = Vector2(-1249, -1337)
 
 [node name="Prop_RockType1_3" parent="y_sort/props" unique_id=1876829243 instance=ExtResource("11_7kora")]
-position = Vector2(-1265, -1607)
+position = Vector2(-1219, -1481)
 
 [node name="Prop_RockType1_5" parent="y_sort/props" unique_id=885314867 instance=ExtResource("11_7kora")]
 position = Vector2(-1136, -1169)
@@ -131,18 +131,6 @@ position = Vector2(258, -1448)
 
 [node name="Prop_StairsRight_4" parent="y_sort/props" unique_id=1537177771 instance=ExtResource("13_drhwc")]
 position = Vector2(258, -1448)
-
-[node name="Candle1" parent="y_sort/props" unique_id=961241730 instance=ExtResource("17_candle")]
-position = Vector2(-1285, -1498)
-scale = Vector2(0.75, 0.75)
-
-[node name="Candle2" parent="y_sort/props" unique_id=1654207319 instance=ExtResource("17_candle")]
-position = Vector2(-1414, -1572)
-scale = Vector2(0.75, 0.75)
-
-[node name="Candle3" parent="y_sort/props" unique_id=1232849848 instance=ExtResource("17_candle")]
-position = Vector2(-1219.0001, -1540)
-scale = Vector2(0.66, 0.66)
 
 [node name="Enemy" parent="y_sort" unique_id=1896881613 instance=ExtResource("14_eu5pw")]
 position = Vector2(-967, -1428)
@@ -228,7 +216,6 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -159.0
-offset_right = -960.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0

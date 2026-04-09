@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctudqwofph0qc"
-path="res://.godot/imported/boot_splash.png-58752582489c18025e901e53092cacd4.ctex"
+uid="uid://wsdx7ccifio1"
+path="res://.godot/imported/GameBanner.png-7573185886692530de9ddc7f2a980e62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/boot_splash.png"
-dest_files=["res://.godot/imported/boot_splash.png-58752582489c18025e901e53092cacd4.ctex"]
+source_file="res://assets/GameBanner.png"
+dest_files=["res://.godot/imported/GameBanner.png-7573185886692530de9ddc7f2a980e62.ctex"]
 
 [params]
 
@@ -34,7 +34,7 @@ process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
-process/hdr_as_srgb=false
+process/hdr_as_srgb=true
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1

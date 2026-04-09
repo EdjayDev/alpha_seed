@@ -10,7 +10,6 @@ var state : String = "idle"
 
 @onready var player_animation: AnimationPlayer = $player_animation
 @onready var camera: Camera2D = $Camera2D
-@onready var point_light: PointLight2D = $PointLight2D
 
 var is_in_cutscene : bool = false
 var flicker_timer : float = 0.0
@@ -26,9 +25,6 @@ func _ready() -> void:
 		health.health_changed.connect(_on_health_changed)
 
 func _process(delta: float) -> void:
-	if point_light:
-		flicker_timer += delta
-		point_light.energy = 1.0 + sin(flicker_timer * 10.0) * 0.05 + randf_range(-0.02, 0.02)
 		
 	if shake_duration > 0:
 		shake_duration -= delta
