@@ -14,6 +14,19 @@
 [ext_resource type="PackedScene" uid="uid://f57687tomw4x" path="res://props/candle.tscn" id="17_candle"]
 [ext_resource type="PackedScene" uid="uid://06jo8ca320hh" path="res://ui/hud.tscn" id="HUD_res"]
 
+[sub_resource type="GDScript" id="GDScript_exit"]
+script/source = "extends Area2D
+
+func _ready():
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body):
+	if body.is_in_group(\"player\"):
+		var game = get_tree().root.get_node_or_null(\"Game\")
+		if game and game.has_method(\"win_game\"):
+			game.win_game()
+"
+
 [sub_resource type="Animation" id="Animation_i1vrp"]
 length = 0.001
 tracks/0/type = "value"
@@ -99,11 +112,9 @@ tile_map_data = PackedByteArray("AAAbAJ7/AAAEAAEAAAAbAJ//AAAEAAEAAAAbAKD/AAAEAAE
 [node name="y_sort" type="Node2D" parent="." unique_id=1684475676]
 y_sort_enabled = true
 
-[node name="Player" parent="y_sort" unique_id=486401784 instance=ExtResource("2_hju2f")]
-position = Vector2(-1255, -1460)
-
 [node name="CaveExit" parent="y_sort" unique_id=999888777 instance=ExtResource("16_exit")]
 position = Vector2(-800, -1400)
+script = SubResource("GDScript_exit")
 
 [node name="props" type="Node2D" parent="y_sort" unique_id=989103739]
 y_sort_enabled = true
@@ -153,6 +164,9 @@ position = Vector2(-975, -1378)
 [node name="Enemy3" parent="y_sort" unique_id=1896881615 instance=ExtResource("14_eu5pw")]
 position = Vector2(-950, -1400)
 
+[node name="Player" parent="y_sort" unique_id=486401784 instance=ExtResource("2_hju2f")]
+position = Vector2(-1285, -1464)
+
 [node name="animation_nodes" type="CanvasLayer" parent="." unique_id=1541567642]
 
 [node name="HUD" parent="animation_nodes" unique_id=1754003929 instance=ExtResource("HUD_res")]
@@ -176,6 +190,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DialogueUI" type="Control" parent="animation_nodes" unique_id=987654321]
+visible = false
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -319,6 +334,15 @@ theme_override_font_sizes/font_size = 48
 text = "CONSUMED BY DARKNESS
 (Click to retry)"
 horizontal_alignment = 1
+
+[node name="screen_effect" type="ColorRect" parent="animation_nodes" unique_id=784298364]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1034978616]
 environment = SubResource("Environment_ahkyb")
