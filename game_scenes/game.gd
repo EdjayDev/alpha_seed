@@ -1,7 +1,7 @@
 extends Node2D
 class_name Main_Game
 
-@onready var label: Label = $animation_nodes/TitleLabel
+@onready var title_label: Label = $animation_nodes/TitleLabel
 @onready var game_anim_player: AnimationPlayer = $animation_nodes/game_anim_player
 @onready var player: Player = $y_sort/Player
 @onready var dialogue_ui: Control = $animation_nodes/DialogueUI
@@ -34,9 +34,7 @@ func intro_cutscene()->void:
 	player.is_in_cutscene = true
 	
 	await show_dialogue("I cannot stay here. I must see what lies beyond this light... or die trying.")
-	await wait(3.0)
 	fade(6.0, "in")
-
 
 	input_locked = false
 	in_cutscene = false
@@ -49,6 +47,7 @@ func _input(event: InputEvent) -> void:
 			get_tree().reload_current_scene()
 
 func win_game() -> void:
+	
 	in_cutscene = true
 	input_locked = true
 	player.is_in_cutscene = true
@@ -71,15 +70,15 @@ func game_over() -> void:
 func show_dialogue(text: String) -> void:
 	dialogue_ui.visible = true
 	dialogue_ui.modulate = Color.TRANSPARENT
-	dialogue_label.text = text
 	
 	var tween = create_tween()
 	tween.tween_property(dialogue_ui, "modulate", Color.WHITE, 0.5)
-	label.text = ""
+	dialogue_label.text = ""
 	for text_char in text:
-		label.text += text_char
-	await get_tree().create_timer(3.0).timeout
+		await wait(0.05)
+		dialogue_label.text += text_char
 	
+	await wait(1.5)
 	var out_tween = create_tween()
 	out_tween.tween_property(dialogue_ui, "modulate", Color.TRANSPARENT, 0.5)
 	await out_tween.finished
@@ -94,7 +93,7 @@ func fade(duration : float, type : String)->void:
 			tweener.tween_property(screen_effect, "color:a", 0, duration)
 		"out":
 			tweener.tween_property(screen_effect, "color:a", 1.0, duration)
-	
+		
 	
 func is_mobile() -> bool:
 	return OS.get_name() in ["Android", "iOS"]

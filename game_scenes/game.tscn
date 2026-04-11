@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://2h3dorrgx8pj" path="res://assets/sound/GardenAmbience_freesound-community.mp3" id="7_3hcdn"]
 [ext_resource type="AudioStream" uid="uid://b21v50lotff34" path="res://assets/sound/gamemusic.mp3" id="8_ctjle"]
 [ext_resource type="PackedScene" uid="uid://q7pi6wsbr7wk" path="res://props/prop_rock_type1_.tscn" id="9_ck3pl"]
+[ext_resource type="PackedScene" uid="uid://qpv2s8qhuwwv" path="res://props/prop_rock_type3_.tscn" id="9_r8i8k"]
+[ext_resource type="PackedScene" uid="uid://cr2f0utn1uxn0" path="res://props/prop_rock_type4_.tscn" id="10_drhwc"]
 [ext_resource type="PackedScene" uid="uid://cp8eixqtpgac8" path="res://props/prop_rock_type2_.tscn" id="11_7kora"]
 [ext_resource type="PackedScene" uid="uid://bi07fqn51pol" path="res://props/prop_stairs_right_.tscn" id="12_r8i8k"]
 [ext_resource type="PackedScene" uid="uid://dooykjn2l1tct" path="res://props/prop_stairs_left_.tscn" id="13_drhwc"]
@@ -119,14 +121,38 @@ script = SubResource("GDScript_exit")
 [node name="props" type="Node2D" parent="y_sort" unique_id=989103739]
 y_sort_enabled = true
 
+[node name="Candle1" parent="y_sort/props" unique_id=961241730 instance=ExtResource("17_candle")]
+position = Vector2(-1278, -1506)
+scale = Vector2(0.75, 0.75)
+
+[node name="Candle2" parent="y_sort/props" unique_id=1654207319 instance=ExtResource("17_candle")]
+position = Vector2(-1434, -1593)
+scale = Vector2(0.75, 0.75)
+
+[node name="Candle3" parent="y_sort/props" unique_id=1232849848 instance=ExtResource("17_candle")]
+position = Vector2(-1391.0001, -1456)
+scale = Vector2(0.66, 0.66)
+
 [node name="Prop_RockType1_" parent="y_sort/props" unique_id=247745234 instance=ExtResource("9_ck3pl")]
-position = Vector2(-1242, -1497)
+position = Vector2(-1318, -1456)
+
+[node name="Prop_RockType1_6" parent="y_sort/props" unique_id=510174280 instance=ExtResource("9_ck3pl")]
+position = Vector2(-1408, -1460)
+
+[node name="Prop_RockType1_7" parent="y_sort/props" unique_id=1022069398 instance=ExtResource("9_ck3pl")]
+position = Vector2(-1468, -1460)
+
+[node name="Prop_RockType1_8" parent="y_sort/props" unique_id=345745675 instance=ExtResource("9_ck3pl")]
+position = Vector2(-1478, -1460)
+
+[node name="Prop_RockType1_9" parent="y_sort/props" unique_id=1127707080 instance=ExtResource("9_ck3pl")]
+position = Vector2(-1487, -1462)
 
 [node name="Prop_RockType1_2" parent="y_sort/props" unique_id=534645467 instance=ExtResource("9_ck3pl")]
 position = Vector2(-1249, -1337)
 
 [node name="Prop_RockType1_3" parent="y_sort/props" unique_id=1876829243 instance=ExtResource("11_7kora")]
-position = Vector2(-1265, -1607)
+position = Vector2(-1414, -1512)
 
 [node name="Prop_RockType1_5" parent="y_sort/props" unique_id=885314867 instance=ExtResource("11_7kora")]
 position = Vector2(-1136, -1169)
@@ -143,17 +169,92 @@ position = Vector2(258, -1448)
 [node name="Prop_StairsRight_4" parent="y_sort/props" unique_id=1537177771 instance=ExtResource("13_drhwc")]
 position = Vector2(258, -1448)
 
-[node name="Candle1" parent="y_sort/props" unique_id=961241730 instance=ExtResource("17_candle")]
-position = Vector2(-1285, -1498)
-scale = Vector2(0.75, 0.75)
+[node name="Prop_RockType2_" parent="y_sort/props" unique_id=1408567495 instance=ExtResource("11_7kora")]
+position = Vector2(-1320, -1502)
 
-[node name="Candle2" parent="y_sort/props" unique_id=1654207319 instance=ExtResource("17_candle")]
-position = Vector2(-1414, -1572)
-scale = Vector2(0.75, 0.75)
+[node name="Prop_RockType2_6" parent="y_sort/props" unique_id=1794975841 instance=ExtResource("11_7kora")]
+position = Vector2(-1398, -1506)
 
-[node name="Candle3" parent="y_sort/props" unique_id=1232849848 instance=ExtResource("17_candle")]
-position = Vector2(-1219.0001, -1540)
-scale = Vector2(0.66, 0.66)
+[node name="Prop_RockType2_2" parent="y_sort/props" unique_id=1676690402 instance=ExtResource("11_7kora")]
+position = Vector2(-1231, -1506)
+
+[node name="Prop_RockType2_3" parent="y_sort/props" unique_id=1088876445 instance=ExtResource("11_7kora")]
+position = Vector2(-1236, -1496)
+
+[node name="Prop_RockType2_4" parent="y_sort/props" unique_id=1091488688 instance=ExtResource("11_7kora")]
+position = Vector2(-1315, -1492)
+
+[node name="Prop_RockType3_" parent="y_sort/props" unique_id=1969173979 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1278, -1517)
+
+[node name="Prop_RockType3_2" parent="y_sort/props" unique_id=337861297 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1249, -1514)
+
+[node name="Prop_RockType3_3" parent="y_sort/props" unique_id=1208716676 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1228, -1479)
+
+[node name="Prop_RockType4_" parent="y_sort/props" unique_id=86783801 instance=ExtResource("10_drhwc")]
+position = Vector2(-1308, -1512)
+
+[node name="Prop_RockType4_5" parent="y_sort/props" unique_id=2119089786 instance=ExtResource("10_drhwc")]
+position = Vector2(-1386, -1465)
+
+[node name="Prop_RockType4_6" parent="y_sort/props" unique_id=920715050 instance=ExtResource("10_drhwc")]
+position = Vector2(-1524, -1462)
+
+[node name="Prop_RockType4_4" parent="y_sort/props" unique_id=1271510555 instance=ExtResource("10_drhwc")]
+position = Vector2(-1373, -1511)
+
+[node name="Prop_RockType2_5" parent="y_sort/props" unique_id=66721906 instance=ExtResource("11_7kora")]
+position = Vector2(-1398, -1496)
+
+[node name="Prop_RockType2_11" parent="y_sort/props" unique_id=67623760 instance=ExtResource("11_7kora")]
+position = Vector2(-1521, -1486)
+
+[node name="Prop_RockType2_12" parent="y_sort/props" unique_id=283848403 instance=ExtResource("11_7kora")]
+position = Vector2(-1527, -1478)
+
+[node name="Prop_RockType2_8" parent="y_sort/props" unique_id=986208356 instance=ExtResource("11_7kora")]
+position = Vector2(-1414, -1463)
+
+[node name="Prop_RockType2_9" parent="y_sort/props" unique_id=1618556779 instance=ExtResource("11_7kora")]
+position = Vector2(-1433, -1460)
+
+[node name="Prop_RockType2_10" parent="y_sort/props" unique_id=561457112 instance=ExtResource("11_7kora")]
+position = Vector2(-1452, -1459)
+
+[node name="Prop_RockType2_13" parent="y_sort/props" unique_id=1373204444 instance=ExtResource("11_7kora")]
+position = Vector2(-1499, -1460)
+
+[node name="Prop_RockType2_7" parent="y_sort/props" unique_id=1577414311 instance=ExtResource("11_7kora")]
+position = Vector2(-1414, -1525)
+
+[node name="Prop_RockType3_4" parent="y_sort/props" unique_id=1624547914 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1324, -1481)
+
+[node name="Prop_RockType3_8" parent="y_sort/props" unique_id=407241751 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1480, -1506)
+
+[node name="Prop_RockType3_9" parent="y_sort/props" unique_id=19895895 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1524, -1496)
+
+[node name="Prop_RockType3_6" parent="y_sort/props" unique_id=898240466 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1404, -1479)
+
+[node name="Prop_RockType3_5" parent="y_sort/props" unique_id=1354323529 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1343, -1515)
+
+[node name="Prop_RockType3_10" parent="y_sort/props" unique_id=1965482158 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1506, -1507)
+
+[node name="Prop_RockType3_7" parent="y_sort/props" unique_id=193034500 instance=ExtResource("9_r8i8k")]
+position = Vector2(-1454, -1509)
+
+[node name="Prop_RockType4_2" parent="y_sort/props" unique_id=78118235 instance=ExtResource("10_drhwc")]
+position = Vector2(-1318, -1465)
+
+[node name="Prop_RockType4_3" parent="y_sort/props" unique_id=275679430 instance=ExtResource("10_drhwc")]
+position = Vector2(-1243, -1463)
 
 [node name="Enemy" parent="y_sort" unique_id=1896881613 instance=ExtResource("14_eu5pw")]
 position = Vector2(-967, -1428)
@@ -165,7 +266,7 @@ position = Vector2(-975, -1378)
 position = Vector2(-950, -1400)
 
 [node name="Player" parent="y_sort" unique_id=486401784 instance=ExtResource("2_hju2f")]
-position = Vector2(-1285, -1464)
+position = Vector2(-1283, -1483)
 
 [node name="animation_nodes" type="CanvasLayer" parent="." unique_id=1541567642]
 
@@ -364,4 +465,4 @@ position = Vector2(345, -1401)
 position = Vector2(-1149, -1392)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=321889389]
-color = Color(0.2578125, 0.2578125, 0.2578125, 1)
+color = Color(0.14703369, 0.16197729, 0.171875, 1)

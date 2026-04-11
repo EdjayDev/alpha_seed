@@ -1,24 +1,23 @@
-[gd_scene format=3 uid="uid://cp8eixqtpgac8"]
+[gd_scene format=3 uid="uid://qpv2s8qhuwwv"]
 
-[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap/tilemap.png" id="1_f3fir"]
+[ext_resource type="Texture2D" uid="uid://twlwm1qlhi3y" path="res://assets/tilemap/tilemap.png" id="1_5o57c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iovi0"]
-radius = 4.0
-height = 20.0
+radius = 7.0
 
-[node name="Prop_RockType2_" type="Node2D" unique_id=510174280]
+[node name="Prop_RockType3_" type="Node2D" unique_id=510174280]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734131500]
-position = Vector2(0, -7.5000005)
-texture = ExtResource("1_f3fir")
+position = Vector2(0, -11)
+texture = ExtResource("1_5o57c")
 region_enabled = true
-region_rect = Rect2(87, 173, 26, 15)
+region_rect = Rect2(80, 202, 37, 22)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1738932887]
 collision_layer = 8
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=574343122]
-position = Vector2(-3, -4)
+position = Vector2(-3, -7)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_iovi0")
