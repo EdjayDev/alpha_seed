@@ -55,7 +55,7 @@ func play_directional_animation(anim_base: String, dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
 		suffix = "_side"
 		if sprite:
-			sprite.scale.x = -1.0 if dir.x > 0 else 1.0
+			sprite.flip_h = (dir.x < 0) 
 	elif dir.y < 0:
 		suffix = "_up"
 	else:

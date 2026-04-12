@@ -3,7 +3,7 @@ extends Node
 
 ## Manages states and transitions between them.
 
-@export var initial_state: NodePath
+@export var initial_state: State
 
 var current_state: State
 var states: Dictionary = {}
@@ -15,10 +15,8 @@ func _ready() -> void:
 			child.transitioned.connect(on_child_transition)
 	
 	if initial_state:
-		var state_node = get_node(initial_state)
-		if state_node is State:
-			state_node.enter()
-			current_state = state_node
+		initial_state.enter()
+		current_state = initial_state
 
 func _process(delta: float) -> void:
 	if get_parent().get("is_in_cutscene"):

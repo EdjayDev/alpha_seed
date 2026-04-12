@@ -8,7 +8,7 @@ var is_attacking: bool = false
 var timer: float = 0.0
 
 func enter() -> void:
-	timer = attack_cooldown
+	timer = attack_cooldown # Start ready to attack or wait? Let's start ready.
 	enemy.velocity = Vector2.ZERO
 	is_attacking = false
 
@@ -31,14 +31,16 @@ func update(delta: float) -> void:
 	var distance = enemy.global_position.distance_to(enemy.player.global_position)
 	
 	if not is_attacking:
-		if distance > enemy.attack_range + 5.0:
+		if distance > enemy.attack_range + 5.0: # Add buffer
 			transitioned.emit("chase")
 			return
 		
 		if timer >= attack_cooldown:
 			perform_attack(dir)
 			timer = 0.0
+			
 		else:
+			# Stay in idle pose while waiting
 			enemy.play_directional_animation("idle", dir)
 	
 func perform_attack(dir: Vector2) -> void:

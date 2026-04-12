@@ -93,7 +93,6 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func update_animation()->void:
-	if state == "attack": return
 	var current_animation = state + "_" + animation_direction
 	if current_animation != last_animation:
 		player_animation.play(current_animation)
@@ -101,7 +100,7 @@ func update_animation()->void:
 
 func attack() -> void:
 	state = "attack"
-	player_animation.play("attack")
+	update_animation()
 	await player_animation.animation_finished
 	state = "idle"
 	last_animation = "" # Force update

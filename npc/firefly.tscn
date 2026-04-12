@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cb0rxun8q8rd8"]
+
+[ext_resource type="Texture2D" uid="uid://ijuflmlhkr52" path="res://npc/firefly.png" id="1_r48q6"]
+[ext_resource type="Script" uid="uid://wcr8b2n3waws" path="res://npc/firefly.gd" id="1_w48ts"]
+
+[sub_resource type="Gradient" id="Gradient_w48ts"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wou8a"]
+gradient = SubResource("Gradient_w48ts")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.90000004, 0.3)
+metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_r48q6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_w48ts"]
+resource_name = "light_up"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wou8a"]
+_data = {
+&"RESET": SubResource("Animation_r48q6"),
+&"light_up": SubResource("Animation_w48ts")
+}
+
+[node name="Firefly" type="Node2D" unique_id=508433605]
+script = ExtResource("1_w48ts")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1081188939]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_r48q6")
+hframes = 2
+vframes = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1074406545]
+color = Color(1, 0.70092773, 0.234375, 1)
+energy = 0.75
+texture = SubResource("GradientTexture2D_wou8a")
+texture_scale = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1165357936]
+libraries/ = SubResource("AnimationLibrary_wou8a")
+autoplay = &"light_up"

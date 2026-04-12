@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var state_machine: StateMachine = $StateMachine
+@onready var state_machine: Node = $StateMachine
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var hit_particles: CPUParticles2D = $HitParticles
@@ -47,6 +47,7 @@ func _on_health_changed(_old_health: float, new_health: float) -> void:
 	if player:
 		var knock_dir = (global_position - player.global_position).normalized()
 		velocity = knock_dir * 100.0
+		# Simple knockback decay over time in physics process is usually better, but for polish:
 		var v_tween = create_tween()
 		v_tween.tween_property(self, "velocity", Vector2.ZERO, 0.2)
 
@@ -55,7 +56,7 @@ func play_directional_animation(anim_base: String, dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):
 		suffix = "_side"
 		if sprite:
-			sprite.scale.x = -1.0 if dir.x > 0 else 1.0
+			sprite.flip_h = (dir.x < 0) # Facing left if dir.x is negative
 	elif dir.y < 0:
 		suffix = "_up"
 	else:
@@ -79,10 +80,11 @@ func deal_damage() -> void:
 		return
 	
 	var distance = global_position.distance_to(player.global_position)
-	if distance <= attack_range + 5.0:
+	if distance <= attack_range + 5.0: # Small buffer
 		var health = player.get_node_or_null("HealthComponent")
 		if health:
 			health.damage(damage)
+			print("Enemy hit player for ", damage, " damage!")
 
 func _physics_process(_delta: float) -> void:
 	if is_in_cutscene:

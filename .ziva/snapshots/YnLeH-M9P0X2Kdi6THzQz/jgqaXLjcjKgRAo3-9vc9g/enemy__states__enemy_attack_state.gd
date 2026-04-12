@@ -4,16 +4,15 @@ extends State
 @export var enemy: Enemy
 @export var attack_cooldown: float = 1.0
 
-var is_attacking: bool = false
 var timer: float = 0.0
 
 func enter() -> void:
-	timer = attack_cooldown
+	timer = 0.0
 	enemy.velocity = Vector2.ZERO
-	is_attacking = false
+	attack()
 
 func exit() -> void:
-	is_attacking = false
+	pass
 
 func update(delta: float) -> void:
 	if enemy.is_in_cutscene:
@@ -27,26 +26,23 @@ func update(delta: float) -> void:
 		transitioned.emit("idle")
 		return
 	
-	var dir = (enemy.player.global_position - enemy.global_position).normalized()
 	var distance = enemy.global_position.distance_to(enemy.player.global_position)
 	
-	if not is_attacking:
-		if distance > enemy.attack_range + 5.0:
-			transitioned.emit("chase")
-			return
-		
-		if timer >= attack_cooldown:
-			perform_attack(dir)
-			timer = 0.0
-		else:
-			enemy.play_directional_animation("idle", dir)
+	if distance > enemy.attack_range:
+		transitioned.emit("chase")
+	elif timer >= attack_cooldown:
+		attack()
+		timer = 0.0
+
+func attack() -> void:
+	if not enemy or not enemy.player:
+		return
 	
-func perform_attack(dir: Vector2) -> void:
-	is_attacking = true
+	var dir = (enemy.player.global_position - enemy.global_position).normalized()
 	enemy.play_directional_animation("attack", dir)
 	
+	# Wait for animation to finish
 	if enemy.animation_player:
 		await enemy.animation_player.animation_finished
-	
-	if is_instance_valid(self):
-		is_attacking = false
+	else:
+		await enemy.get_tree().create_timer(0.4).timeout
