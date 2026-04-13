@@ -288,7 +288,3 @@ zoom = Vector2(5, 5)
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1460406642]
 script = ExtResource("3_health")
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=451220535]
-shadow_enabled = true
-texture_scale = 2.0

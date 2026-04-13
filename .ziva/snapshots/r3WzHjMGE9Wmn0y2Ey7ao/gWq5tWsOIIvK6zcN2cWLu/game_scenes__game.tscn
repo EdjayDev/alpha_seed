@@ -15,10 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://df7w6u5h6q7u" path="res://enemy/enemy.tscn" id="14_eu5pw"]
 [ext_resource type="PackedScene" uid="uid://c6yv8q5h6q7u1" path="res://systems/cave_exit.tscn" id="16_exit"]
 [ext_resource type="PackedScene" uid="uid://f57687tomw4x" path="res://props/candle.tscn" id="17_candle"]
-[ext_resource type="PackedScene" path="res://systems/fuel_item.tscn" id="18_fuel"]
-[ext_resource type="PackedScene" path="res://systems/attack_item.tscn" id="19_attack"]
 [ext_resource type="PackedScene" uid="uid://06jo8ca320hh" path="res://ui/hud.tscn" id="HUD_res"]
-
 
 [sub_resource type="GDScript" id="GDScript_exit"]
 script/source = "extends Area2D
@@ -119,8 +116,7 @@ tile_map_data = PackedByteArray("AAAbAJ7/AAAEAAEAAAAbAJ//AAAEAAEAAAAbAKD/AAAEAAE
 y_sort_enabled = true
 
 [node name="CaveExit" parent="y_sort" unique_id=999888777 instance=ExtResource("16_exit")]
-position = Vector2(800, -1400)
-
+position = Vector2(-800, -1400)
 script = SubResource("GDScript_exit")
 
 [node name="props" type="Node2D" parent="y_sort" unique_id=989103739]
@@ -415,40 +411,6 @@ position = Vector2(-1417, -1440)
 
 [node name="Firefly4" parent="y_sort" unique_id=164596938 instance=ExtResource("13_eu5pw")]
 position = Vector2(-1396, -1454)
-
-[node name="FuelItem1" parent="y_sort" unique_id=200000001 instance=ExtResource("18_fuel")]
-position = Vector2(-1200, -1400)
-
-[node name="FuelItem2" parent="y_sort" unique_id=200000002 instance=ExtResource("18_fuel")]
-position = Vector2(-400, -1400)
-
-[node name="AttackItem1" parent="y_sort" unique_id=200000003 instance=ExtResource("19_attack")]
-position = Vector2(-1000, -1450)
-
-[node name="Settlement2_Candle" parent="y_sort" unique_id=200000004 instance=ExtResource("17_candle")]
-position = Vector2(-200, -1400)
-
-[node name="Settlement2_Rock" parent="y_sort" unique_id=200000005 instance=ExtResource("9_ck3pl")]
-position = Vector2(-220, -1420)
-
-[node name="Settlement2_Enemy" parent="y_sort" unique_id=200000006 instance=ExtResource("14_eu5pw")]
-position = Vector2(-100, -1400)
-
-[node name="Settlement3_Candle" parent="y_sort" unique_id=200000007 instance=ExtResource("17_candle")]
-position = Vector2(300, -1400)
-
-[node name="Settlement3_Rock" parent="y_sort" unique_id=200000008 instance=ExtResource("11_7kora")]
-position = Vector2(280, -1420)
-
-[node name="Settlement3_Enemy" parent="y_sort" unique_id=200000009 instance=ExtResource("14_eu5pw")]
-position = Vector2(400, -1400)
-
-[node name="Settlement3_Fuel" parent="y_sort" unique_id=200000010 instance=ExtResource("18_fuel")]
-position = Vector2(320, -1380)
-
-[node name="Settlement3_Attack" parent="y_sort" unique_id=200000011 instance=ExtResource("19_attack")]
-position = Vector2(350, -1420)
-
 
 [node name="animation_nodes" type="CanvasLayer" parent="." unique_id=1541567642]
 

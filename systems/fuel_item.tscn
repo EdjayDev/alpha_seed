@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://systems/collectible.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://assets/generated/light_crystal_frame_0_1776087193.png" id="2_texture"]
+
+[node name="FuelItem" instance=ExtResource("1_base")]
+type = 0
+amount = 50.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_texture")

@@ -1,10 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-signal fuel_changed(new_fuel: float)
-
 @onready var player_sprite: Sprite2D = $player_sprite
-
 
 const SPEED = 100.0
 var animation_direction : String = "down"
@@ -19,14 +16,6 @@ var flicker_timer : float = 0.0
 var shake_intensity : float = 0.0
 var shake_duration : float = 0.0
 
-var fuel: float = 100.0
-var max_fuel: float = 100.0
-var attack_boost_timer: float = 0.0
-var base_damage: int = 25
-var current_damage: int = 25
-
-@onready var light: PointLight2D = $PointLight2D
-
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("player")
@@ -36,36 +25,8 @@ func _ready() -> void:
 		health.health_changed.connect(_on_health_changed)
 
 func _process(delta: float) -> void:
-	# Light fuel depletion
-	if fuel > 0:
-		fuel -= delta * 2.0 # Deplete over time
-		fuel = max(0, fuel)
-		fuel_changed.emit(fuel)
-
-	
-	# Update light energy and scale based on fuel
-	if light:
-		var fuel_ratio = fuel / max_fuel
-		light.energy = 0.5 + (fuel_ratio * 0.5)
-		light.texture_scale = 1.0 + (fuel_ratio * 1.5)
 		
-		# Flicker effect when low
-		if fuel < 20:
-			flicker_timer += delta * 10
-			light.energy *= 0.8 + (sin(flicker_timer) * 0.2)
-
-	# Attack boost timer
-	if attack_boost_timer > 0:
-		attack_boost_timer -= delta
-		current_damage = base_damage * 2
-		player_sprite.modulate = Color(1.5, 0.5, 0.5) # Glowing red
-	else:
-		current_damage = base_damage
-		if player_sprite.modulate != Color.WHITE:
-			player_sprite.modulate = Color.WHITE
-
 	if shake_duration > 0:
-
 		shake_duration -= delta
 		camera.offset = Vector2(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity))
 	else:
@@ -158,14 +119,4 @@ func deal_damage() -> void:
 		if global_position.distance_to(enemy.global_position) < 20.0:
 			var health = enemy.get_node_or_null("HealthComponent")
 			if health:
-				health.damage(current_damage)
-
-func add_fuel(amount: float) -> void:
-	fuel = min(max_fuel, fuel + amount)
-	var tween = create_tween()
-	tween.tween_property(light, "energy", 2.0, 0.2)
-	tween.tween_property(light, "energy", 1.0, 0.2)
-
-func add_attack_boost(duration: float) -> void:
-	attack_boost_timer = duration
-	current_damage = base_damage * 2
+				health.damage(25)
