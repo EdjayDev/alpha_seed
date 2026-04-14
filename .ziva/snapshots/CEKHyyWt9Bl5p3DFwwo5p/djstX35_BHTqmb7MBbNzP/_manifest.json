@@ -1,1 +1,0 @@
-{"created_files":["res://systems/state.gd","res://systems/state_machine.gd","res://enemy/enemy_base.gd","res://enemy/states/enemy_attack_state.gd","res://enemy/states/enemy_idle_state.gd","res://enemy/states/enemy_chase_state.gd"],"snapshotted_files":["res://player/player.gd"]}

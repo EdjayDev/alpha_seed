@@ -15,9 +15,24 @@ extends CharacterBody2D
 var player: Player
 var is_in_cutscene : bool = false
 
+# Context steering properties
+var num_rays: int = 16
+var ray_directions: Array[Vector2] = []
+var interest: Array[float] = []
+var danger: Array[float] = []
+var look_ahead: float = 64.0
+
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("enemy")
+	
+	# Initialize ray directions
+	for i in range(num_rays):
+		var angle = i * 2 * PI / num_rays
+		ray_directions.append(Vector2.RIGHT.rotated(angle))
+	interest.resize(num_rays)
+	danger.resize(num_rays)
+	
 	player = get_tree().get_first_node_in_group("player")
 	if not player:
 		player = get_tree().get_root().find_child("Player", true, false) as Player
@@ -83,6 +98,80 @@ func deal_damage() -> void:
 		var health = player.get_node_or_null("HealthComponent")
 		if health:
 			health.damage(damage)
+
+func get_steering_direction(target_pos: Vector2) -> Vector2:
+	set_interest(target_pos)
+	set_danger()
+	
+	# Eliminate danger from interest
+	for i in range(num_rays):
+		# We can use a smoother subtraction for more organic movement
+		interest[i] = max(0, interest[i] - danger[i])
+	
+	# Choose direction
+	var chosen_dir = Vector2.ZERO
+	for i in range(num_rays):
+		chosen_dir += ray_directions[i] * interest[i]
+	
+	if chosen_dir == Vector2.ZERO:
+		# If stuck, try to move away from the strongest danger, 
+		# but add a side-ways component to "slide"
+		var max_danger_idx = -1
+		var max_danger = 0.0
+		for i in range(num_rays):
+			if danger[i] > max_danger:
+				max_danger = danger[i]
+				max_danger_idx = i
+		
+		if max_danger_idx != -1:
+			var danger_dir = ray_directions[max_danger_idx]
+			# Rotate 90 degrees to find a "side" to slide along
+			chosen_dir = danger_dir.rotated(PI / 2)
+	
+	return chosen_dir.normalized()
+
+func set_interest(target_pos: Vector2) -> void:
+	var target_dir = (target_pos - global_position).normalized()
+	for i in range(num_rays):
+		var d = ray_directions[i].dot(target_dir)
+		interest[i] = max(0, d)
+
+func set_danger() -> void:
+	var space_state = get_world_2d().direct_space_state
+	for i in range(num_rays):
+		# Look ahead for environment and props (Layers 1 and 4)
+		var ray_pos = global_position + ray_directions[i] * look_ahead
+		var query = PhysicsRayQueryParameters2D.create(global_position, ray_pos, 1 | 8) # Environment | Props
+		query.exclude = [get_rid()]
+		
+		var result = space_state.intersect_ray(query)
+		danger[i] = 0.0
+		if result:
+			var distance = global_position.distance_to(result.position)
+			# Stronger avoidance as we get closer
+			danger[i] = pow(1.0 - (distance / look_ahead), 0.5)
+		
+		# Side rays (whiskers) check to help with narrow passages and corners
+		# If a ray hits something, we also increase danger for its neighbors
+		# but with a decay.
+	
+	# Post-process danger to "spread" it slightly, helping the AI avoid clipping corners
+	var new_danger = danger.duplicate()
+	for i in range(num_rays):
+		var prev = (i - 1 + num_rays) % num_rays
+		var next = (i + 1) % num_rays
+		new_danger[i] = max(danger[i], max(danger[prev] * 0.5, danger[next] * 0.5))
+	danger = new_danger
+
+	# Also avoid other enemies (Layer 3) with a shorter distance
+	for i in range(num_rays):
+		var enemy_ray_pos = global_position + ray_directions[i] * 32.0
+		var enemy_query = PhysicsRayQueryParameters2D.create(global_position, enemy_ray_pos, 4) # Enemies
+		enemy_query.exclude = [get_rid()]
+		var enemy_result = space_state.intersect_ray(enemy_query)
+		if enemy_result:
+			var distance = global_position.distance_to(enemy_result.position)
+			danger[i] = max(danger[i], 0.8 * (1.0 - (distance / 32.0)))
 
 func _physics_process(_delta: float) -> void:
 	if is_in_cutscene:

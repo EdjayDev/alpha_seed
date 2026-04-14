@@ -600,7 +600,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.78)
 
-[node name="Label" type="Label" parent="animation_nodes/GameOverScreen" unique_id=314210975]
+[node name="Label" type="Label" parent="animation_nodes/GameOverScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -608,15 +608,39 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -50.0
+offset_top = -120.0
 offset_right = 200.0
-offset_bottom = 50.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
-text = "CONSUMED BY DARKNESS
-(Click to retry)"
+text = "CONSUMED BY DARKNESS"
 horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="animation_nodes/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="RetryButton" type="Button" parent="animation_nodes/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "RETRY"
+
+[node name="QuitButton" type="Button" parent="animation_nodes/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "QUIT"
 
 [node name="screen_effect" type="ColorRect" parent="animation_nodes" unique_id=784298364]
 z_index = -1
@@ -625,6 +649,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1034978616]

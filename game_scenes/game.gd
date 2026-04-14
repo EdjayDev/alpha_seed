@@ -26,6 +26,11 @@ func _ready() -> void:
 	$AudioStreamPlayer.volume_db = -10
 	$AudioStreamPlayer.play()
 	
+	if $animation_nodes/GameOverScreen.has_node("VBoxContainer/RetryButton"):
+		$animation_nodes/GameOverScreen/VBoxContainer/RetryButton.pressed.connect(_on_retry_button_pressed)
+	if $animation_nodes/GameOverScreen.has_node("VBoxContainer/QuitButton"):
+		$animation_nodes/GameOverScreen/VBoxContainer/QuitButton.pressed.connect(_on_quit_button_pressed)
+	
 	intro_cutscene()
 
 func intro_cutscene()->void:
@@ -41,10 +46,14 @@ func intro_cutscene()->void:
 	player.is_in_cutscene = false
 
 func _input(event: InputEvent) -> void:
-	if game_over_screen.visible and (event is InputEventMouseButton or event is InputEventKey):
-		if event.is_pressed():
-			get_tree().paused = false
-			get_tree().reload_current_scene()
+	pass
+
+func _on_retry_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
 
 func win_game() -> void:
 	

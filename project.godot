@@ -21,6 +21,10 @@ config/icon="uid://bfshiljpvbbpd"
 
 buses/default_bus_layout="uid://bwv5ymm30r8kn"
 
+[autoload]
+
+BreadcrumbManager="*res://systems/breadcrumb_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280

@@ -21,4 +21,3 @@ func _on_player_health_changed(_old_health: float, new_health: float) -> void:
 
 func _on_player_fuel_changed(new_fuel: float) -> void:
 	fuel_bar.value = new_fuel
-

@@ -25,6 +25,9 @@ var attack_boost_timer: float = 0.0
 var base_damage: int = 25
 var current_damage: int = 25
 
+var breadcrumb_timer: float = 0.0
+const BREADCRUMB_INTERVAL = 0.5 # Drop a breadcrumb every 0.5s
+
 @onready var light: PointLight2D = $PointLight2D
 
 func _ready() -> void:
@@ -63,6 +66,12 @@ func _process(delta: float) -> void:
 		current_damage = base_damage
 		if player_sprite.modulate != Color.WHITE:
 			player_sprite.modulate = Color.WHITE
+
+	# Breadcrumbs
+	breadcrumb_timer += delta
+	if breadcrumb_timer >= BREADCRUMB_INTERVAL:
+		breadcrumb_timer = 0.0
+		BreadcrumbManager.add_breadcrumb(global_position)
 
 	if shake_duration > 0:
 
