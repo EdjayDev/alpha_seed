@@ -38,15 +38,11 @@ func intro_cutscene()->void:
 	input_locked = true
 	player.is_in_cutscene = true
 	
-	await show_dialogue("I cannot stay here. I must see what lies beyond this light... or die trying.")
 	fade(6.0, "in")
 
 	input_locked = false
 	in_cutscene = false
 	player.is_in_cutscene = false
-
-func _input(event: InputEvent) -> void:
-	pass
 
 func _on_retry_button_pressed() -> void:
 	get_tree().paused = false
