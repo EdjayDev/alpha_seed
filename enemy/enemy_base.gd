@@ -26,13 +26,19 @@ func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("enemy")
 	
-	# Initialize ray directions
+	# Ensure clean initialization (prevents duplicate appends)
+	ray_directions.clear()
+	
 	for i in range(num_rays):
-		var angle = i * 2 * PI / num_rays
+		var angle := i * TAU / num_rays
 		ray_directions.append(Vector2.RIGHT.rotated(angle))
 	
 	interest.resize(num_rays)
 	danger.resize(num_rays)
+	
+	for i in range(num_rays):
+		interest[i] = 0.0
+		danger[i] = 0.0
 	
 	player = get_tree().get_first_node_in_group("player")
 	if not player:
@@ -47,22 +53,16 @@ func _ready() -> void:
 			health_bar.value = health_component.health
 
 func _physics_process(_delta: float) -> void:
-	if is_in_cutscene:
+	if is_in_cutscene or not is_instance_valid(player):
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
 	
-	if not is_instance_valid(player):
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
+	var dir := get_steering_direction(player.global_position)
 	
-	var dir = get_steering_direction(player.global_position)
-	
-	# Smooth movement
 	velocity = velocity.lerp(dir * speed, 0.1)
 	
-	if dir != Vector2.ZERO:
+	if dir.length_squared() > 0.0001:
 		play_directional_animation("move", dir)
 	
 	move_and_slide()
@@ -76,29 +76,27 @@ func _on_health_changed(_old_health: float, new_health: float) -> void:
 		hit_particles.restart()
 		hit_particles.emitting = true
 	
-	# Flash effect
 	var tween = create_tween()
 	sprite.modulate = Color.WHITE
 	tween.tween_property(sprite, "modulate", Color(0.8, 0.4, 1.0), 0.1)
 	
-	# Knockback
 	if is_instance_valid(player):
-		var knock_dir = (global_position - player.global_position).normalized()
-		velocity = knock_dir * 100.0
-		
-		var v_tween = create_tween()
-		v_tween.tween_property(self, "velocity", Vector2.ZERO, 0.2)
+		var knock_dir := global_position - player.global_position
+		if knock_dir.length_squared() > 0.0001:
+			knock_dir = knock_dir.normalized()
+			velocity = knock_dir * 100.0
+			
+			var v_tween = create_tween()
+			v_tween.tween_property(self, "velocity", Vector2.ZERO, 0.2)
 
 func play_directional_animation(anim_base: String, dir: Vector2) -> void:
-	var suffix = "_down"
+	var suffix := "_down"
 	
 	if abs(dir.x) > abs(dir.y):
 		suffix = "_side"
 		sprite.scale.x = -1.0 if dir.x > 0 else 1.0
 	elif dir.y < 0:
 		suffix = "_up"
-	else:
-		suffix = "_down"
 	
 	if animation_player:
 		animation_player.play(anim_base + suffix)
@@ -116,7 +114,7 @@ func deal_damage() -> void:
 	if not is_instance_valid(player):
 		return
 	
-	var distance = global_position.distance_to(player.global_position)
+	var distance := global_position.distance_to(player.global_position)
 	if distance <= attack_range + 5.0:
 		var health = player.get_node_or_null("HealthComponent")
 		if health:
@@ -126,18 +124,17 @@ func get_steering_direction(target_pos: Vector2) -> Vector2:
 	set_interest(target_pos)
 	set_danger()
 	
-	# Remove danger influence
 	for i in range(num_rays):
-		interest[i] = max(0, interest[i] - danger[i])
+		interest[i] = max(0.0, interest[i] - danger[i])
 	
-	var chosen_dir = Vector2.ZERO
+	var chosen_dir := Vector2.ZERO
 	
 	for i in range(num_rays):
 		chosen_dir += ray_directions[i] * interest[i]
 	
-	if chosen_dir == Vector2.ZERO:
-		var max_danger_idx = -1
-		var max_danger = 0.0
+	if chosen_dir.length_squared() < 0.0001:
+		var max_danger_idx := -1
+		var max_danger := 0.0
 		
 		for i in range(num_rays):
 			if danger[i] > max_danger:
@@ -145,40 +142,44 @@ func get_steering_direction(target_pos: Vector2) -> Vector2:
 				max_danger_idx = i
 		
 		if max_danger_idx != -1:
-			var danger_dir = ray_directions[max_danger_idx]
-			chosen_dir = danger_dir.rotated(PI / 2)
+			var danger_dir := ray_directions[max_danger_idx]
+			chosen_dir = danger_dir.rotated(PI * 0.5)
 	
-	return chosen_dir == Vector2.ZERO ? Vector2.ZERO : chosen_dir.normalized()
+	return chosen_dir.normalized() if chosen_dir.length_squared() > 0.0001 else Vector2.ZERO
 
 func set_interest(target_pos: Vector2) -> void:
-	var target_dir = (target_pos - global_position).normalized()
+	var to_target := target_pos - global_position
+	
+	if to_target.length_squared() < 0.0001:
+		return
+	
+	var target_dir := to_target.normalized()
 	
 	for i in range(num_rays):
-		var d = ray_directions[i].dot(target_dir)
-		interest[i] = max(0, d)
+		var d := ray_directions[i].dot(target_dir)
+		interest[i] = max(0.0, d)
 
 func set_danger() -> void:
-	var space_state = get_world_2d().direct_space_state
+	var space_state := get_world_2d().direct_space_state
 	
 	for i in range(num_rays):
-		var ray_pos = global_position + ray_directions[i] * look_ahead
+		var ray_pos := global_position + ray_directions[i] * look_ahead
 		
-		var query = PhysicsRayQueryParameters2D.create(global_position, ray_pos, 1 | 8)
+		var query := PhysicsRayQueryParameters2D.create(global_position, ray_pos, int(1 | 8))
 		query.exclude = [get_rid()]
 		
-		var result = space_state.intersect_ray(query)
+		var result := space_state.intersect_ray(query)
 		danger[i] = 0.0
 		
 		if result:
-			var distance = global_position.distance_to(result.position)
+			var distance := global_position.distance_to(result.position)
 			danger[i] = pow(1.0 - (distance / look_ahead), 0.5)
 	
-	# Spread danger
-	var new_danger = danger.duplicate()
+	var new_danger := danger.duplicate()
 	
 	for i in range(num_rays):
-		var prev = (i - 1 + num_rays) % num_rays
-		var next = (i + 1) % num_rays
+		var prev := (i - 1 + num_rays) % num_rays
+		var next := (i + 1) % num_rays
 		
 		new_danger[i] = max(
 			danger[i],
@@ -187,15 +188,14 @@ func set_danger() -> void:
 	
 	danger = new_danger
 	
-	# Avoid other enemies (Layer 3 → bitmask 4)
 	for i in range(num_rays):
-		var enemy_ray_pos = global_position + ray_directions[i] * 32.0
+		var enemy_ray_pos := global_position + ray_directions[i] * 32.0
 		
-		var enemy_query = PhysicsRayQueryParameters2D.create(global_position, enemy_ray_pos, 4)
+		var enemy_query := PhysicsRayQueryParameters2D.create(global_position, enemy_ray_pos, 4)
 		enemy_query.exclude = [get_rid()]
 		
-		var result = space_state.intersect_ray(enemy_query)
+		var result := space_state.intersect_ray(enemy_query)
 		
 		if result:
-			var distance = global_position.distance_to(result.position)
+			var distance := global_position.distance_to(result.position)
 			danger[i] = max(danger[i], 0.8 * (1.0 - (distance / 32.0)))
