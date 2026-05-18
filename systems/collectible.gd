@@ -10,12 +10,18 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
-		match type:
-			Type.LIGHT_FUEL:
-				if body.has_method("add_fuel"):
-					body.add_fuel(amount)
-			Type.ATTACK_BOOST:
-				if body.has_method("add_attack_boost"):
-					body.add_attack_boost(amount)
-		queue_free()
+	if not body is Player:
+		return
+
+	match type:
+		Type.LIGHT_FUEL:
+			_apply_effect(body, "add_fuel")
+		Type.ATTACK_BOOST:
+			_apply_effect(body, "add_attack_boost")
+
+	queue_free()
+
+
+func _apply_effect(body: Node, method_name: String) -> void:
+	if body.has_method(method_name):
+		body.call(method_name, amount)
